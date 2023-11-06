@@ -41,20 +41,23 @@ jobs:
       uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - name: Check if image and container exsist
+    - name: Check if image and container exist
       run: |
         echo "${{secrets.key}}" > id_rsa
         chmod 600 id_rsa
-        ssh -o StrictHostKeyChecking=no -t -i id_rsa opc@129.213.60.252
+        ssh -o StrictHostKeyChecking=no -t -i id_rsa opc@129.213.60.252 << EOF
         sudo docker kill RPSPorto; sudo docker rm RPSPorto; sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:latest
         exit
+        EOF
       continue-on-error: true
     - name: Deploy with Docker
       run: |
         echo "${{secrets.key}}" > id_rsa
         chmod 600 id_rsa
-        ssh -o StrictHostKeyChecking=no -t -i id_rsa opc@129.213.60.252
+        ssh -o StrictHostKeyChecking=no -t -i id_rsa opc@129.213.60.252 << EOF
         sudo docker run --name RPSPorto -p 1000:1000 -d ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:latest
         sudo firewall-cmd --add-port=1000/tcp
         sudo firewall-cmd --reload
         exit
+        EOF
+      
