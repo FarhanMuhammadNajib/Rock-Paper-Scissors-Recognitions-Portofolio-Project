@@ -43,10 +43,11 @@ jobs:
         fetch-depth: 0
     - name: Connect to Server
       run: |
-        echo ${{secrets.key}} >> ssh-key-2023-11-02.key
+        echo "${{secrets.key}}" > ssh-key-2023-11-02.key
+        chmod 600 ssh-key-2023-11-02.key
         ssh -i ssh-key-2023-11-02.key opc@129.213.60.252
     - name: Check if image and container exsist
-      run: docker kill RPSPorto && docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
+      run: docker kill RPSPorto; docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
       continue-on-error: true
     - name: Deploy with Docker
       run: docker run --name RPSPorto -p 1000:1000 ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
