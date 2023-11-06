@@ -56,4 +56,4 @@ def predict():
         return render_template("Predict.html", prediction = prediction, img_path = encoded_img_data.decode('utf-8'))
     
 if __name__ == "__main__":
-    app.run(port=1000)
+    app.run(host='0.0.0.0',port=1000)
