@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Prediction Result</title>
+    <link rel="stylesheet" type="" href="static/css/style.css">
+    <!-- <link rel="stylesheet" type="" href="../static/style.css"> -->
+</head>
+<body>
+    <h1 style="text-align: center;">Prediction Result</h1>
+    <div class="box">
+    {% if prediction %}
+    <!-- <img src="data:image/jpeg;base64,{{ img_path }}" /> -->
+    <img id="imagePreview" src="data:image/jpeg;base64,{{ img_path }}" alt="Selected Image" style="max-width: 200px;">
+    <!-- <img src="../static/PredictFile/download.jpeg"/> -->
+    <br />
+    <h2 style="text-align: center;">Result: {{prediction}}</h2>
+    <form class="submit" action="/" method="get">
+        <input type="submit" value="Re-Predict">
+    </form>
+    {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: 
+    - 'main'
+  pull_request: 
+    branches: 
+    - 'main'
+  workflow_dispatch:
+
+jobs:
+  Docker:
+    if: github.ref == 'refs/heads/main'
+    name: Docker Build and Push
+    runs-on: Ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    - name: Build and push image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
+  Deploy: 
+    if: github.ref == 'refs/heads/main'
+    name: Deploy To Docker Instance 
+    needs: Docker
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out the repo
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - name: Connect to Server
+      run: |
+        echo ${{secrets.key}} >> ssh-key-2023-11-02.key
+        ssh -i ssh-key-2023-11-02.key opc@129.213.60.252
+    - name: Check if image and container exsist
+      run: docker kill RPSPorto && docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
+      continue-on-error: true
+    - name: Deploy with Docker
+      run: docker run --name RPSPorto -p 1000:1000 ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:Latest
