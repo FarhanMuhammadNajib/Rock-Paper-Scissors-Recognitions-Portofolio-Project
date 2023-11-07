@@ -4,6 +4,7 @@ from PIL import Image
 import os
 import base64
 import io
+from waitress import serve
 
 app= Flask(__name__)
 
@@ -56,4 +57,4 @@ def predict():
         return render_template("Predict.html", prediction = prediction, img_path = encoded_img_data.decode('utf-8'))
     
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=1000)
+    serve(app, host='0.0.0.0', port=1000)

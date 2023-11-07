@@ -2,40 +2,25 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>Test Model Machine learning</title>
+    <title>Project Rock Paper Scissors Recognitions</title>
     <link rel="stylesheet" type="" href="static/css/style.css">
 </head>
 <body>
-    <!-- <h1 class="judul">Testing Machine learning Model </h1>
-    <center><form action="/predict" method="post" enctype="multipart/form-data">
-        <label for="predict"><h3>Predict</h3></label>
-        <input type="file" id="Predict" name="predictFile" value="predictFile" accept="image/*"><br><br>
-        <input type="submit">
-    </form></center> -->
-    <h3 class="text-info">Project Rock Paper Scissors Recognitions</h3>
-    <p>Exploring the Future: Our Portfolio Showcases Cutting-Edge Image Prediction Projects!</p>
+    <div class="container">
+        <h1>🔮 Rock Paper Scissors Image Recognition: A Project-Based Learning Approach🔮</h1>
+        <p>This portfolio shows how I used a pre-trained model and a custom dataset to classify rock paper scissors handgesture images with transfer learning</p>
+    </div> 
     <div class="box">
-        <center><form id="imageForm" action="/predict" method="post" enctype="multipart/form-data">
+        <form id="imageForm" action="/predict" method="post" enctype="multipart/form-data">
             <h3>Predict</h3>
-            <input type="file" id="imageInput" name="predictFile" value="predictFile" accept="image/*"style="display: none;">
-        <img id="imagePreview" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTBCISkCCWmP77oaAqn4Pcy4IWrKizgs9RYMZuU7OMC5Khn3w0P" alt="Selected Image" style="max-width: 200px;">
-        <br>
-        <button type="button" id="selectImageButton">Select Image</button>
-        <input type="submit" value="Submit">
-            <!-- <input type="file" id="Predict" name="predictFile" value="predictFile" accept="image/*"><br><br>
-            <input type="submit"> -->
-        </form></center>
-        <br>
-        <center><form id="imageForm" action="/predict" method="post" enctype="multipart/form-data">
-            <h3>Or</h3>
-            <h3>Choose from Image Below</h3>
-            <input type="image" id="imageInput" name="predictFile" value="predictFile" src="https://as2.ftcdn.net/v2/jpg/02/43/06/89/1000_F_243068964_BqrpjOdMd2U7ZEGLjiO8l7h4Ut1j9hcA.jpg" alt="Image Paper" style="border: 3px solid #555; border-radius: 15px; width: 200px; height: 200px;" title="Paper"> 
-            <input type="image" id="imageInput" name="predictFile" value="predictFile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwfcP9aDftXWbHlYN7EAq9crv-o95baGOipQ&usqp=CAU" alt="Image Rock" style="border: 3px solid #555; border-radius: 15px; width: 200px; height: 200px;" title="Rock">
-            <input type="image" id="imageInput" name="predictFile" value="predictFile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSj47EMHqD1tPyG-UcuPO7OQEiJ4EyaH8xbQ&usqp=CAU" alt="Image Scissors" style="border: 3px solid #555; border-radius: 15px; width: 200px; height: 200px;" title="Scissors">
-            <input type="image" id="imageInput" name="predictFile" value="predictFile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG_zdJdknWjLe12bu3i1IR3ZLhl2ewWmpfqQ&usqp=CAU" alt="Image RockNRoll" style="border: 3px solid #555; border-radius: 15px; width: 200px; height: 200px;" title="RockNRoll">
-            <input type="image" id="imageInput" name="predictFile" value="predictFile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYFnYkvBwzrwA276SC-qfFm9-puVpmaBGpbQ&usqp=CAU" alt="Image CallSign" style="border: 3px solid #555; border-radius: 15px; width: 200px; height: 200px;" title="Call Sign">
-        </form></center>
+            <input type="file" id="imageInput" name="predictFile" value="predictFile" accept="image/*">
+            <img id="imagePreview" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTBCISkCCWmP77oaAqn4Pcy4IWrKizgs9RYMZuU7OMC5Khn3w0P" alt="Selected Image">
+            <br>
+            <button type="button" id="selectImageButton">Select Image</button>
+            <input type="submit" value="Submit">
+        </form>
     </div>
+    
     <script src="static/js/script.js"></script>
 </body>
 </html>
