@@ -55,7 +55,7 @@ jobs:
     - name: Deploy with Docker
       run: |
         ssh -o StrictHostKeyChecking=no -t -i id_rsa opc@129.213.60.252 << EOF
-        sudo docker run --name RPSPorto -p 1000:1000 -d ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:latest
+        sudo docker run --name RPSPorto -p 1000:1000 -d -v /etc/letsencrypt:/etc/letsencrypt ${{ secrets.DOCKERHUB_USERNAME }}/${{vars.Docker_Repo}}:latest
         sudo firewall-cmd --add-port=1000/tcp
         sudo firewall-cmd --reload
         exit

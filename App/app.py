@@ -5,8 +5,10 @@ import os
 import base64
 import io
 from waitress import serve
+from flask_talisman import Talisman
 
 app= Flask(__name__)
+Talisman(app, content_security_policy=None)
 
 @app.route("/")
 def Home():
